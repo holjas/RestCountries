@@ -1,7 +1,14 @@
 @import "./variables.css";
 
 h1 {
-  background-color: grey;
-  font-family: var(--fontFamily);
   font-weight: 900;
+}
+.header {
+  background-color: var(--white);
+}
+.header p {
+  font-weight: 900;
+}
+.header svg {
+  margin-right: 10px;
 }

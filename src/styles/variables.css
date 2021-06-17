@@ -9,3 +9,6 @@
   --white: hsl(0, 0%, 100%);
   --fontFamily: "Nunito Sans", sans-serif;
 }
+.text-end {
+  text-align: right;
+}

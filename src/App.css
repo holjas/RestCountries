@@ -1,7 +1,13 @@
+@import "./styles/variables.css";
 @import "./styles/Header.css";
 
 @media (min-width: 1440px) {
   .container {
     max-width: 1400px;
   }
+}
+
+body {
+  font-size: 16px;
+  font-family: var(--fontFamily);
 }
