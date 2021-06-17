@@ -1,0 +1,7 @@
+@import "./variables.css";
+
+h1 {
+  background-color: grey;
+  font-family: var(--fontFamily);
+  font-weight: 900;
+}
