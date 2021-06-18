@@ -3,7 +3,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/SearchBar.css";
 
-const Navigation = () => {
+const Navigation = ({ captureRegion }) => {
   return (
     <section>
       <div className="container pt-5 pb-5">
@@ -11,7 +11,7 @@ const Navigation = () => {
           <div className="col">
             <form className="d-flex">
               <button
-                className="input-group-text border-0 bg-light"
+                className="input-group-text border-0 btn btn-outline-dark"
                 id="search-addon"
               >
                 <FontAwesomeIcon
@@ -30,35 +30,25 @@ const Navigation = () => {
             </form>
           </div>
 
-          <div className="col">
-            <div class="dropdown">
-              <button
-                class="btn btn-lg dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+          <div className="col d-flex justify-content-end">
+            <label htmlFor="filter-region">filter by region</label>
+            <select
+              id="filter-region"
+              name="filter-region"
+              className="border"
+              onChange={(e) => {
+                captureRegion(e.target.value);
+              }}
+            >
+              <option value="filter by region" defaultValue>
                 Filter by Region
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </div>
+              </option>
+              <option value="africa">Africa</option>
+              <option value="america">America</option>
+              <option value="asia">Asia</option>
+              <option value="europe">Europe</option>
+              <option value="oceania">Oceania</option>
+            </select>
           </div>
         </div>
       </div>
