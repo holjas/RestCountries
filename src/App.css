@@ -33,3 +33,9 @@ body {
   font-weight: 700;
   padding-right: 10px;
 }
+.btn {
+  padding: 8px 40px;
+}
+.btn svg {
+  margin-right: 10px;
+}

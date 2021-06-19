@@ -2,7 +2,6 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
 import Catalogue from "./components/Catalogue";
 import CountryDetails from "./components/CountryDetails";
 
@@ -49,20 +48,29 @@ const App = () => {
   return (
     <Router>
       <Header></Header>
-      <SearchBar
-        captureRegion={captureRegion}
-        captureSearchInput={captureSearchInput}
-      ></SearchBar>
 
       <Route
         exact
         path="/"
-        render={() => <Catalogue countries={countries} />}
+        render={() => (
+          <Catalogue
+            countries={countries}
+            captureRegion={captureRegion}
+            captureSearchInput={captureSearchInput}
+          />
+        )}
       />
 
       <Route
         path="/country/:name"
-        render={() => <CountryDetails countries={countries} />}
+        // render={(props) => (
+        //   <CountryDetails
+        //     captureSearchInput={captureSearchInput}
+        //     props={props}
+        //   />
+        // )}
+        component={CountryDetails}
+        captureSearchInput={captureSearchInput}
       />
     </Router>
   );
