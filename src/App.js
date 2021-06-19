@@ -62,8 +62,7 @@ const App = () => {
 
       <Route
         path="/country/:name"
-        component={CountryDetails}
-        countries={countries}
+        render={() => <CountryDetails countries={countries} />}
       />
     </Router>
   );
