@@ -4,7 +4,7 @@ import { faMoon as faMoonOutline } from "@fortawesome/free-regular-svg-icons";
 
 const Header = () => {
   return (
-    <section className="header">
+    <section className="header border-bottom">
       <div className="container">
         <div className="row align-items-center pt-3">
           <div className="col">
