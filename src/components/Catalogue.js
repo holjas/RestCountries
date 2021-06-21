@@ -2,6 +2,7 @@ import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 
 const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
+  console.log(countries);
   return (
     <>
       <SearchBar

@@ -7,7 +7,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const CountryDetails = (props) => {
   const [country, setCountry] = useState({});
-  console.log(country);
+  const [countryLoaded, setCountryLoaded] = useState(false);
 
   useEffect(() => {
     const countrySelected = props.match.params.name;
@@ -19,26 +19,16 @@ const CountryDetails = (props) => {
       dataResponse: "json",
     })
       .then((response) => {
-        const countryResponse = response.data;
+        const countryResponse = response.data[0];
         setCountry(countryResponse);
+        setCountryLoaded(true);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [props]);
 
-  //   const {
-  //     // flag,
-  //     name,
-  //     nativeName,
-  //     population,
-  //     region,
-  //     subregion,
-  //     captial,
-  //     topLevelDomain,
-  //     currencies,
-  //   } = country[0];
-  //   console.log(currencies[0]);
+  console.log(country);
   return (
     <div className="container">
       <div className="row mt-5">
@@ -56,42 +46,66 @@ const CountryDetails = (props) => {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-lg-6">
-          {/* <img className="card-img-top" src={flag} alt={name} /> */}
+      <div className="row mt-5">
+        <div className="col-lg-5">
+          <img className="card-img-top" src={country.flag} alt={country.name} />
         </div>
-        {/* <div className="col-lg-6">
-          <h5>{name}</h5>
-          <p>
-            <span>Native Name:</span>
-            {nativeName}
-          </p>
-          <p>
-            <span>Population:</span>
-            {population}
-          </p>
-          <p>
-            <span>Region:</span>
-            {region}
-          </p>
-          <p>
-            <span>Sub Region:</span>
-            {subregion}
-          </p>
-          <p>
-            <span>Capital:</span>
-            {captial}
-          </p>
-          <p>
-            <span>Top Level Domain:</span>
-            {topLevelDomain}
-          </p>
-          <p>
-            <span>Currencies:</span>
-            {currencies[0].code}
-            {currencies}
-          </p>
-        </div> */}
+
+        <div className="col-6">
+          <div className="row m-5">
+            <h2 className="card-title">{country.name}</h2>
+            <div className="col">
+              <p className="card-text">
+                <span>Native Name:</span>
+                {country.nativeName}
+              </p>
+              <p className="card-text">
+                <span>Population:</span>
+                {country.population}
+              </p>
+              <p className="card-text">
+                <span>Region:</span>
+                {country.region}
+              </p>
+              <p className="card-text">
+                <span>Sub Region:</span>
+                {country.subregion}
+              </p>
+              <p className="card-text">
+                <span>Capital:</span>
+                {country.capital}
+              </p>
+            </div>
+
+            <div className="col">
+              <p className="card-text">
+                <span>Top Level Domain:</span>
+                {country.topLevelDomain}
+              </p>
+              <p className="card-text">
+                <span>Currencies:</span>
+                {/* {country.currencies[0].code} */}
+              </p>
+              <p className="card-text">
+                <span>Languages:</span>
+                {/* {languages.map((x) => {
+              return x.name;
+            })} */}
+              </p>
+            </div>
+
+            <div className="row mt-5">
+              <p className="card-text">
+                <span>Border Countries:</span>
+                {countryLoaded && (
+                  <button type="button" className="btn btn-outline-secondary">
+                    {country.name}
+                  </button>
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
