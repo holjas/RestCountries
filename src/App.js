@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header";
@@ -8,28 +8,35 @@ import CountryDetails from "./components/CountryDetails";
 // stylesheets
 import "./App.css";
 
+// ---------------------
+import testdata from "./response.json";
+// ---------------------
+
 const App = () => {
   const [countries, setCountries] = useState([]);
+  const [region, setRegion] = useState("");
+  const [searchByName, setSearchByName] = useState("");
 
-  //return countries from region selected
-  const captureRegion = (region) => {
-    axios({
-      url: `https://restcountries.eu/rest/v2/region/${region}`,
-      method: "GET",
-      dataResponse: "json",
-    })
-      .then((response) => {
-        const countryResponse = response.data;
-        setCountries(countryResponse);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  useEffect(() => {
+    setCountries(testdata);
+  }, []);
+  // useEffect(() => {
+  //   axios({
+  //     url: `https://restcountries.eu/rest/v2/`,
+  //     method: "GET",
+  //     dataResponse: "json",
+  //   })
+  //     .then((response) => {
+  //       const countryResponse = response.data;
+  //       setCountries(countryResponse);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
-  //return countries from search by user input
+  //serach for a country (user input)
   const captureSearchInput = (input) => {
-    //remove white space, turn to lower case to avoid errors in search
     const cleanUpInput = input.split(" ").join("").toLowerCase();
     axios({
       url: `https://restcountries.eu/rest/v2/name/${cleanUpInput}`,
@@ -44,6 +51,23 @@ const App = () => {
         console.log(error);
       });
   };
+  const captureRegion = (e) => {
+    setRegion(e);
+  };
+
+  const renderedCountries = (countries) => {
+    let result = countries;
+    //filter by region
+    if (region) {
+      result = countries.filter((country) => {
+        return country.region.includes(region);
+      });
+    }
+    if (searchByName) {
+      console.log("you serach byNAME");
+    }
+    return result;
+  };
 
   return (
     <Router>
@@ -51,10 +75,10 @@ const App = () => {
 
       <Route
         exact
-        path="/"
+        path='/'
         render={() => (
           <Catalogue
-            countries={countries}
+            countries={renderedCountries(countries)}
             captureRegion={captureRegion}
             captureSearchInput={captureSearchInput}
           />
@@ -62,13 +86,7 @@ const App = () => {
       />
 
       <Route
-        path="/country/:name"
-        // render={(props) => (
-        //   <CountryDetails
-        //     captureSearchInput={captureSearchInput}
-        //     props={props}
-        //   />
-        // )}
+        path='/country/:name'
         component={CountryDetails}
         captureSearchInput={captureSearchInput}
       />

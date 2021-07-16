@@ -13,32 +13,32 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
 
   return (
     <section>
-      <div className="container pt-5 pb-5">
-        <div className="row">
+      <div className='container pt-5 pb-5'>
+        <div className='row'>
           {/* search input field.  */}
-          <div className="col">
-            <form className="d-flex">
+          <div className='col'>
+            <form className='d-flex'>
               <button
-                className="input-group-text border-0 btn btn-outline-dark"
-                id="search-addon"
+                className='input-group-text border-0 btn btn-outline-dark'
+                id='search-addon'
                 onClick={(e) => {
                   e.preventDefault();
                   captureSearchInput(userInput);
                 }}
-                type="submit"
+                type='submit'
               >
                 <FontAwesomeIcon
                   icon={faSearch}
-                  aria-hidden="true"
-                  title="search button"
+                  aria-hidden='true'
+                  title='search button'
                 />
               </button>
               <input
-                type="search"
-                className="form-control rounded"
-                placeholder="Search for a country..."
-                aria-label="Search"
-                aria-describedby="search-addon"
+                type='search'
+                className='form-control rounded'
+                placeholder='Search for a country...'
+                aria-label='Search'
+                aria-describedby='search-addon'
                 onChange={handleChange}
                 value={userInput}
               />
@@ -46,24 +46,24 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
           </div>
 
           {/* filter by region dropdown */}
-          <div className="col d-flex justify-content-end">
-            <label htmlFor="filter-region">filter by region</label>
+          <div className='col d-flex justify-content-end'>
+            <label htmlFor='filter-region'>filter by region</label>
             <select
-              id="filter-region"
-              name="filter-region"
-              className="border"
+              id='filter-region'
+              name='filter-region'
+              className='border'
               onChange={(e) => {
                 captureRegion(e.target.value);
               }}
             >
-              <option value="filter by region" defaultValue>
+              <option value='filter by region' defaultValue>
                 Filter by Region
               </option>
-              <option value="africa">Africa</option>
-              <option value="americas">Americas</option>
-              <option value="asia">Asia</option>
-              <option value="europe">Europe</option>
-              <option value="oceania">Oceania</option>
+              <option value='Africa'>Africa</option>
+              <option value='Americas'>Americas</option>
+              <option value='Asia'>Asia</option>
+              <option value='Europe'>Europe</option>
+              <option value='Oceania'>Oceania</option>
             </select>
           </div>
         </div>
