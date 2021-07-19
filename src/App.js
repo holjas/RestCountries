@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import Header from "./components/Header";
 import Catalogue from "./components/Catalogue";
 import CountryDetails from "./components/CountryDetails";
@@ -36,23 +36,28 @@ const App = () => {
   // }, []);
 
   //serach for a country (user input)
-  const captureSearchInput = (input) => {
-    const cleanUpInput = input.split(" ").join("").toLowerCase();
-    axios({
-      url: `https://restcountries.eu/rest/v2/name/${cleanUpInput}`,
-      method: "GET",
-      dataResponse: "json",
-    })
-      .then((response) => {
-        const countryResponse = response.data;
-        setCountries(countryResponse);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const captureSearchInput = (input) => {
+  //   const cleanUpInput = input.split(" ").join("").toLowerCase();
+  //   axios({
+  //     url: `https://restcountries.eu/rest/v2/name/${cleanUpInput}`,
+  //     method: "GET",
+  //     dataResponse: "json",
+  //   })
+  //     .then((response) => {
+  //       const countryResponse = response.data;
+  //       setCountries(countryResponse);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   const captureRegion = (e) => {
+    setSearchByName("");
     setRegion(e);
+  };
+  const captureSearchInput = (e) => {
+    setRegion("");
+    setSearchByName(e);
   };
 
   const renderedCountries = (countries) => {
@@ -63,8 +68,12 @@ const App = () => {
         return country.region.includes(region);
       });
     }
+    //filter by search term
     if (searchByName) {
-      console.log("you serach byNAME");
+      result = countries.filter((country) => {
+        const searchTerm = searchByName.toLowerCase();
+        return country.name.toLowerCase().includes(searchTerm);
+      });
     }
     return result;
   };
@@ -85,11 +94,7 @@ const App = () => {
         )}
       />
 
-      <Route
-        path='/country/:name'
-        component={CountryDetails}
-        captureSearchInput={captureSearchInput}
-      />
+      <Route exact path='/country/:name' component={CountryDetails} />
     </Router>
   );
 };

@@ -8,6 +8,7 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
   const [userInput, setUserInput] = useState("");
 
   const handleChange = (e) => {
+    e.preventDefault();
     setUserInput(e.target.value);
   };
 
@@ -18,21 +19,6 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
           {/* search input field.  */}
           <div className='col'>
             <form className='d-flex'>
-              <button
-                className='input-group-text border-0 btn btn-outline-dark'
-                id='search-addon'
-                onClick={(e) => {
-                  e.preventDefault();
-                  captureSearchInput(userInput);
-                }}
-                type='submit'
-              >
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  aria-hidden='true'
-                  title='search button'
-                />
-              </button>
               <input
                 type='search'
                 className='form-control rounded'
@@ -42,6 +28,21 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
                 onChange={handleChange}
                 value={userInput}
               />
+              <button
+                type='submit'
+                className='input-group-text border-0 btn btn-outline-dark'
+                id='search-addon'
+                onClick={(e) => {
+                  e.preventDefault();
+                  captureSearchInput(userInput);
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  aria-hidden='true'
+                  title='search button'
+                />
+              </button>
             </form>
           </div>
 
@@ -64,6 +65,7 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
               <option value='Asia'>Asia</option>
               <option value='Europe'>Europe</option>
               <option value='Oceania'>Oceania</option>
+              <option value=''>Show All</option>
             </select>
           </div>
         </div>

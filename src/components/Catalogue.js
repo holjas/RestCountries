@@ -18,10 +18,17 @@ const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             };
-            //return card for each country
+
             return (
               <div className='card mb-5 shadow-sm rounded' key={country.name}>
-                <Link to={`/country/${country.name}`}>
+                <Link
+                  to={{
+                    pathname: `/country/${country.name}`,
+                    countryProps: {
+                      country: country,
+                    },
+                  }}
+                >
                   <img
                     className='card-img-top'
                     src={country.flag}
