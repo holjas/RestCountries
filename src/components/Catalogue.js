@@ -2,12 +2,7 @@ import SearchBar from "./SearchBar";
 
 import { Link } from "react-router-dom";
 
-const Catalogue = ({
-  countries,
-  captureRegion,
-  captureSearchInput,
-  captureSelectedCounty,
-}) => {
+const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
   const populationFormat = (population) => {
     return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -32,6 +27,9 @@ const Catalogue = ({
                     pathname: `/country/${country.name}`,
                     selectedCountry: {
                       myCountry: country,
+                    },
+                    data: {
+                      populationFormat: populationFormat,
                     },
                   }}
                 >

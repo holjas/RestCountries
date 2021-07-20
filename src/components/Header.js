@@ -4,18 +4,18 @@ import { faMoon as faMoonOutline } from "@fortawesome/free-regular-svg-icons";
 
 const Header = () => {
   return (
-    <section className="header border-bottom">
-      <div className="container">
-        <div className="row align-items-center pt-3">
-          <div className="col">
+    <section className='header border-bottom'>
+      <div className='container'>
+        <div className='row align-items-center pt-3 pb-3'>
+          <div className='col'>
             <h1>Where in the world?</h1>
           </div>
-          <div className="col">
-            <p className="text-end">
+          <div className='col'>
+            <p className='text-end mb-0'>
               <FontAwesomeIcon
                 icon={faMoonOutline}
-                aria-hidden="true"
-                title="dark mode off"
+                aria-hidden='true'
+                title='dark mode off'
               />
               {/* <FontAwesomeIcon
               icon={faMoonSolid}

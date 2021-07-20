@@ -7,6 +7,7 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
   const history = useHistory();
 
   const chosenCountry = history.location.selectedCountry.myCountry.name;
+  const populationFormat = history.location.data.populationFormat;
 
   const countryDetails = countries.filter((country) => {
     return country.name.includes(chosenCountry);
@@ -64,11 +65,11 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
       </div>
 
       <div className='row mt-5'>
-        <div className='col-lg-5'>
+        <div className='col-5'>
           <img className='card-img-top' src={flag} alt={name} />
         </div>
 
-        <div className='col-6'>
+        <div className='col'>
           <div className='row m-5'>
             <h2 className='card-title'>{name} </h2>
             <div className='col'>
@@ -78,7 +79,7 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
               </p>
               <p className='card-text'>
                 <span>Population:</span>
-                {population}
+                {populationFormat(population)}
               </p>
               <p className='card-text'>
                 <span>Region:</span>
@@ -110,23 +111,18 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
             </div>
 
             <div className='row mt-5'>
-              <p className='card-text'>
-                <span>Border Countries:</span>
+              <div className='col-3'>
+                <p className='card-text'>
+                  <span>Border Countries:</span>
+                </p>
+              </div>
+              <div className='col'>
                 {borderCountries(borders).map((borderCountry) => {
                   return (
-                    // <Link
-                    //   to={{
-                    //     pathname: `/country/${borderCountry.name}`,
-                    //     selectedCountry: {
-                    //       myCountry: borderCountry,
-                    //     },
-                    //   }}
-                    // >
                     <button
                       key={borderCountry.name}
                       className='btn btn-outline-secondary borderBtn m-1'
                       value={borderCountry.name}
-                      // onClick={captureSelectedCounty}
                       onClick={(e) => {
                         captureSelectedCounty(e);
                         history.push({
@@ -134,15 +130,17 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
                           selectedCountry: {
                             myCountry: borderCountry,
                           },
+                          data: {
+                            populationFormat: populationFormat,
+                          },
                         });
                       }}
                     >
                       {borderCountry.name}
                     </button>
-                    // </Link>
                   );
                 })}
-              </p>
+              </div>
             </div>
           </div>
         </div>

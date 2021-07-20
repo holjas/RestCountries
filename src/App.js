@@ -98,7 +98,6 @@ const App = () => {
         )}
       />
 
-      {/* <Route exact path='/country/:name' component={CountryDetails} /> */}
       <Route path='/country/:name'>
         <CountryDetails
           countries={countries}
