@@ -2,6 +2,10 @@ import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 
 const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
+  const populationFormat = (population) => {
+    return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <>
       <SearchBar
@@ -12,20 +16,13 @@ const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
       <div className='container'>
         <div className='d-flex justify-content-around flex-wrap mt-4'>
           {countries.map((country) => {
-            //   format population numbers with commas
-            const populationFormat = (population) => {
-              return population
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            };
-
             return (
               <div className='card mb-5 shadow-sm rounded' key={country.name}>
                 <Link
                   to={{
                     pathname: `/country/${country.name}`,
-                    countryProps: {
-                      country: country,
+                    selectedCountry: {
+                      myCountry: country,
                     },
                   }}
                 >

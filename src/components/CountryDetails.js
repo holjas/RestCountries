@@ -1,12 +1,17 @@
-// import { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faLanguage } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const CountryDetails = (props) => {
-  // const [country, setCountry] = useState({});
-  console.log(props);
+  const history = useHistory();
+  const chosenCountry = history.location.selectedCountry.myCountry.name;
+
+  const countryDetails = props.countries.filter((country) => {
+    return country.name.includes(chosenCountry);
+  });
+
   const {
     flag,
     name,
@@ -19,17 +24,24 @@ const CountryDetails = (props) => {
     currencies,
     topLevelDomain,
     borders,
-  } = props.location.countryProps.country;
+  } = countryDetails[0];
+
+  const borderCountries = (borders) => {
+    let results = [];
+    let countries = props.countries;
+    results = countries.filter((country) => {
+      return borders.includes(country.alpha3Code);
+    });
+    return results;
+  };
 
   const formatStyle = (details) => {
     let result = [];
     details.map((detail) => {
-      result.push(detail.name);
+      return result.push(detail.name);
     });
     return result.join(", ");
   };
-
-  console.log(borders);
 
   return (
     <div className='container'>
@@ -50,12 +62,12 @@ const CountryDetails = (props) => {
 
       <div className='row mt-5'>
         <div className='col-lg-5'>
-          <img className='card-img-top' src={flag} alt={`flag of ${name}`} />
+          <img className='card-img-top' src={flag} alt={name} />
         </div>
 
         <div className='col-6'>
           <div className='row m-5'>
-            <h2 className='card-title'>{name}</h2>
+            <h2 className='card-title'>{name} </h2>
             <div className='col'>
               <p className='card-text'>
                 <span>Native Name:</span>
@@ -97,8 +109,24 @@ const CountryDetails = (props) => {
             <div className='row mt-5'>
               <p className='card-text'>
                 <span>Border Countries:</span>
-                {borders.map((border) => {
-                  return border + " - ";
+                {borderCountries(borders).map((borderCountry) => {
+                  return (
+                    <Link
+                      to={{
+                        pathname: `/country/${borderCountry.name}`,
+                        selectedCountry: {
+                          myCountry: "Canada",
+                        },
+                      }}
+                    >
+                      <button
+                        className='btn btn-outline-secondary borderBtn m-1'
+                        key={borderCountry.alpha3Code}
+                      >
+                        {borderCountry.name}
+                      </button>
+                    </Link>
+                  );
                 })}
               </p>
             </div>
