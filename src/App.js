@@ -16,6 +16,7 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState("");
   const [searchByName, setSearchByName] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
 
   useEffect(() => {
     setCountries(testdata);
@@ -59,7 +60,10 @@ const App = () => {
     setRegion("");
     setSearchByName(e);
   };
-
+  const captureSelectedCounty = (e) => {
+    console.log("function, captureselected", e.target.value);
+    setSelectedCountry(e.target.value);
+  };
   const renderedCountries = (countries) => {
     let result = countries;
     //filter by region
@@ -96,7 +100,11 @@ const App = () => {
 
       {/* <Route exact path='/country/:name' component={CountryDetails} /> */}
       <Route path='/country/:name'>
-        <CountryDetails countries={countries} />
+        <CountryDetails
+          countries={countries}
+          captureSelectedCounty={captureSelectedCounty}
+          key={selectedCountry}
+        />
       </Route>
     </Router>
   );

@@ -1,7 +1,13 @@
 import SearchBar from "./SearchBar";
+
 import { Link } from "react-router-dom";
 
-const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
+const Catalogue = ({
+  countries,
+  captureRegion,
+  captureSearchInput,
+  captureSelectedCounty,
+}) => {
   const populationFormat = (population) => {
     return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -17,7 +23,10 @@ const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
         <div className='d-flex justify-content-around flex-wrap mt-4'>
           {countries.map((country) => {
             return (
-              <div className='card mb-5 shadow-sm rounded' key={country.name}>
+              <div
+                className='card mb-5 shadow-sm rounded'
+                key={country.alpha2Code}
+              >
                 <Link
                   to={{
                     pathname: `/country/${country.name}`,
@@ -30,6 +39,7 @@ const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
                     className='card-img-top'
                     src={country.flag}
                     alt={country.name}
+                    value={country.name}
                   />
                 </Link>
 

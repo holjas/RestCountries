@@ -1,14 +1,14 @@
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-const CountryDetails = (props) => {
+const CountryDetails = ({ countries, captureSelectedCounty }) => {
   const history = useHistory();
+
   const chosenCountry = history.location.selectedCountry.myCountry.name;
 
-  const countryDetails = props.countries.filter((country) => {
+  const countryDetails = countries.filter((country) => {
     return country.name.includes(chosenCountry);
   });
 
@@ -28,7 +28,6 @@ const CountryDetails = (props) => {
 
   const borderCountries = (borders) => {
     let results = [];
-    let countries = props.countries;
     results = countries.filter((country) => {
       return borders.includes(country.alpha3Code);
     });
@@ -47,16 +46,20 @@ const CountryDetails = (props) => {
     <div className='container'>
       <div className='row mt-5'>
         <div className='col'>
-          <Link to='/'>
-            <button type='button' className='btn btn-outline-secondary backBtn'>
-              <FontAwesomeIcon
-                icon={faArrowLeft}
-                aria-hidden='true'
-                title='dark mode on'
-              />
-              Back
-            </button>
-          </Link>
+          <button
+            type='button'
+            className='btn btn-outline-secondary backBtn'
+            onClick={() => {
+              history.push(`/`);
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              aria-hidden='true'
+              title='dark mode on'
+            />
+            Back
+          </button>
         </div>
       </div>
 
@@ -111,21 +114,32 @@ const CountryDetails = (props) => {
                 <span>Border Countries:</span>
                 {borderCountries(borders).map((borderCountry) => {
                   return (
-                    <Link
-                      to={{
-                        pathname: `/country/${borderCountry.name}`,
-                        selectedCountry: {
-                          myCountry: "Canada",
-                        },
+                    // <Link
+                    //   to={{
+                    //     pathname: `/country/${borderCountry.name}`,
+                    //     selectedCountry: {
+                    //       myCountry: borderCountry,
+                    //     },
+                    //   }}
+                    // >
+                    <button
+                      key={borderCountry.name}
+                      className='btn btn-outline-secondary borderBtn m-1'
+                      value={borderCountry.name}
+                      // onClick={captureSelectedCounty}
+                      onClick={(e) => {
+                        captureSelectedCounty(e);
+                        history.push({
+                          pathname: `/country/${borderCountry.name}`,
+                          selectedCountry: {
+                            myCountry: borderCountry,
+                          },
+                        });
                       }}
                     >
-                      <button
-                        className='btn btn-outline-secondary borderBtn m-1'
-                        key={borderCountry.alpha3Code}
-                      >
-                        {borderCountry.name}
-                      </button>
-                    </Link>
+                      {borderCountry.name}
+                    </button>
+                    // </Link>
                   );
                 })}
               </p>
