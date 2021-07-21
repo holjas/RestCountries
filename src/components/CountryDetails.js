@@ -65,7 +65,7 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
       </div>
 
       <div className='row mt-5'>
-        <div className='col-5'>
+        <div className='col-lg-5'>
           <img className='card-img-top' src={flag} alt={name} />
         </div>
 
@@ -111,7 +111,7 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
             </div>
 
             <div className='row mt-5'>
-              <div className='col-3'>
+              <div className='col-lg-3'>
                 <p className='card-text'>
                   <span>Border Countries:</span>
                 </p>

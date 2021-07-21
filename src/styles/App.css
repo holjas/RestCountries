@@ -5,6 +5,25 @@
     max-width: 1400px;
   }
 }
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* added line */
+}
+
 .header svg,
 .backBtn svg {
   margin-right: 10px;
@@ -42,11 +61,10 @@ input[type="search"] {
 .btn-lg {
   font-size: 1rem;
 }
-label {
-  visibility: hidden;
-}
 select {
   width: 200px;
+  padding: 0.375rem 0.75rem;
+  /* float: right; */
 }
 h1 {
   font-weight: 900;

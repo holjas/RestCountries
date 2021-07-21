@@ -14,11 +14,11 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
 
   return (
     <section>
-      <div className='container pt-5 pb-5'>
-        <div className='row'>
+      <div className='container pt-5 pb-3'>
+        <div className='row d-flex flex-wrap'>
           {/* search input field.  */}
-          <div className='col'>
-            <form className='d-flex'>
+          <div className='col-lg-6'>
+            <form className='d-flex mb-4'>
               <input
                 type='search'
                 className='form-control rounded'
@@ -47,12 +47,14 @@ const Navigation = ({ captureRegion, captureSearchInput }) => {
           </div>
 
           {/* filter by region dropdown */}
-          <div className='col d-flex justify-content-end'>
-            <label htmlFor='filter-region'>filter by region</label>
+          <div className='col'>
+            <label htmlFor='filter-region' className='visually-hidden'>
+              filter by region
+            </label>
             <select
               id='filter-region'
               name='filter-region'
-              className='border'
+              className='float-lg-end border'
               onChange={(e) => {
                 captureRegion(e.target.value);
               }}
