@@ -27,14 +27,14 @@ Users should be able to:
 
 ### Screenshot
 
-<img src="./images/DesktopDark.png" alt="desktop dark mode"/>
-<img src="./images/DesktopLight.png" alt="desktop light mode"/>
-<img src="./images/MobileDark.png" alt="mobile dark mode"/>
+<img src="./src/images/DesktopDark.png" alt="desktop dark mode"/>
+<img src="./src/images/DesktopLight.png" alt="desktop light mode"/>
+<img src="./src/images/MobileDark.png" alt="mobile dark mode"/>
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://cocky-johnson-4998b1.netlify.app/](https://cocky-johnson-4998b1.netlify.app/)
+- Live Site URL: [https://github.com/holjas/RestCountries](https://github.com/holjas/RestCountries)
 
 ## My process
 
