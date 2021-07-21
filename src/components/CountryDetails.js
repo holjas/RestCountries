@@ -3,6 +3,8 @@ import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import ScrollToTop from "./ScrollToTop";
+
 const CountryDetails = ({ countries, captureSelectedCounty }) => {
   const history = useHistory();
 
@@ -145,6 +147,7 @@ const CountryDetails = ({ countries, captureSelectedCounty }) => {
           </div>
         </div>
       </div>
+      <ScrollToTop></ScrollToTop>
     </div>
   );
 };

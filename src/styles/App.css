@@ -77,3 +77,25 @@ h1 {
 .darkModeBtn:focus {
   cursor: pointer;
 }
+.scrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  font-size: 3rem;
+  z-index: 1000;
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+  transition: opacity 0.4s;
+  opacity: 0.5;
+}
+.scrollTop:hover {
+  opacity: 1;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

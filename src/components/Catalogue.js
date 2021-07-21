@@ -1,4 +1,5 @@
 import SearchBar from "./SearchBar";
+import ScrollToTop from "./ScrollToTop";
 
 import { Link } from "react-router-dom";
 
@@ -60,6 +61,7 @@ const Catalogue = ({ countries, captureRegion, captureSearchInput }) => {
             );
           })}
         </div>
+        <ScrollToTop></ScrollToTop>
       </div>
     </>
   );
