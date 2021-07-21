@@ -6,7 +6,10 @@ import Catalogue from "./components/Catalogue";
 import CountryDetails from "./components/CountryDetails";
 
 // stylesheets
-import "./App.css";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./components/theme";
+import { GlobalStyles } from "./components/global";
+import "./styles/App.css";
 
 // ---------------------
 import testdata from "./response.json";
@@ -17,6 +20,7 @@ const App = () => {
   const [region, setRegion] = useState("");
   const [searchByName, setSearchByName] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [theme, setTheme] = useState(true);
 
   useEffect(() => {
     setCountries(testdata);
@@ -61,8 +65,10 @@ const App = () => {
     setSearchByName(e);
   };
   const captureSelectedCounty = (e) => {
-    console.log("function, captureselected", e.target.value);
     setSelectedCountry(e.target.value);
+  };
+  const captureTheme = () => {
+    setTheme(!theme);
   };
   const renderedCountries = (countries) => {
     let result = countries;
@@ -84,27 +90,30 @@ const App = () => {
 
   return (
     <Router>
-      <Header></Header>
+      <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        <Header captureTheme={captureTheme} theme={theme}></Header>
 
-      <Route
-        exact
-        path='/'
-        render={() => (
-          <Catalogue
-            countries={renderedCountries(countries)}
-            captureRegion={captureRegion}
-            captureSearchInput={captureSearchInput}
-          />
-        )}
-      />
-
-      <Route path='/country/:name'>
-        <CountryDetails
-          countries={countries}
-          captureSelectedCounty={captureSelectedCounty}
-          key={selectedCountry}
+        <Route
+          exact
+          path='/'
+          render={() => (
+            <Catalogue
+              countries={renderedCountries(countries)}
+              captureRegion={captureRegion}
+              captureSearchInput={captureSearchInput}
+            />
+          )}
         />
-      </Route>
+
+        <Route path='/country/:name'>
+          <CountryDetails
+            countries={countries}
+            captureSelectedCounty={captureSelectedCounty}
+            key={selectedCountry}
+          />
+        </Route>
+      </ThemeProvider>
     </Router>
   );
 };

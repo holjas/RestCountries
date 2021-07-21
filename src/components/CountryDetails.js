@@ -6,11 +6,11 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const CountryDetails = ({ countries, captureSelectedCounty }) => {
   const history = useHistory();
 
-  const chosenCountry = history.location.selectedCountry.myCountry.name;
+  const chosenCountry = history.location.selectedCountry.myCountry.alpha3Code;
   const populationFormat = history.location.data.populationFormat;
 
   const countryDetails = countries.filter((country) => {
-    return country.name.includes(chosenCountry);
+    return country.alpha3Code.includes(chosenCountry) ? country.name : null;
   });
 
   const {

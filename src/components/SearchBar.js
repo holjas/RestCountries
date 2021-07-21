@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import "../styles/SearchBar.css";
+import "../styles/App.css";
 
 const Navigation = ({ captureRegion, captureSearchInput }) => {
   const [userInput, setUserInput] = useState("");

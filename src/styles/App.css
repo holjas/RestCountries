@@ -1,24 +1,9 @@
-@import "./styles/variables.css";
-@import "./styles/Header.css";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
 @media (min-width: 1440px) {
   .container {
     max-width: 1400px;
   }
-}
-
-body {
-  font-size: 16px;
-  font-family: var(--fontFamily);
-  background-color: var(--lightModeBackground);
-}
-h1,
-h2,
-h3,
-h4,
-h5 p {
-  padding: 0;
-  margin: 0;
 }
 .header svg,
 .backBtn svg {
@@ -41,7 +26,7 @@ h5 p {
   margin-bottom: 20px;
 }
 .card-text {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 .card-text span {
   font-weight: 700;
@@ -49,4 +34,28 @@ h5 p {
 }
 .btn {
   padding: 8px 20px;
+}
+input[type="search"] {
+  padding-left: 10px;
+}
+.btn-group-lg > .btn,
+.btn-lg {
+  font-size: 1rem;
+}
+label {
+  visibility: hidden;
+}
+select {
+  width: 200px;
+}
+h1 {
+  font-weight: 900;
+}
+
+.header p {
+  font-weight: 900;
+}
+.darkModeBtn:hover,
+.darkModeBtn:focus {
+  cursor: pointer;
 }
