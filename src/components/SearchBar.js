@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -6,6 +6,10 @@ import "../styles/App.css";
 
 const Navigation = ({ captureRegion, captureSearchInput }) => {
   const [userInput, setUserInput] = useState("");
+
+  useEffect(() => {
+    captureSearchInput(userInput);
+  }, [userInput, captureSearchInput]);
 
   const handleChange = (e) => {
     e.preventDefault();
