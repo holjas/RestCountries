@@ -42,7 +42,6 @@ const App = () => {
   }, []);
 
   const captureRegion = (e) => {
-    console.log(e);
     setSearchByName("");
     setRegion(e);
   };
