@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import Header from "./components/Header";
 import Catalogue from "./components/Catalogue";
 import CountryDetails from "./components/CountryDetails";
@@ -12,7 +12,7 @@ import { GlobalStyles } from "./components/global";
 import "./styles/App.css";
 
 // ---------------------
-import testdata from "./response.json";
+// import testdata from "./response.json";
 // ---------------------
 
 const App = () => {
@@ -22,46 +22,30 @@ const App = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [theme, setTheme] = useState(true);
 
-  useEffect(() => {
-    setCountries(testdata);
-  }, []);
   // useEffect(() => {
-  //   axios({
-  //     url: `https://restcountries.eu/rest/v2/`,
-  //     method: "GET",
-  //     dataResponse: "json",
-  //   })
-  //     .then((response) => {
-  //       const countryResponse = response.data;
-  //       setCountries(countryResponse);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+  //   setCountries(testdata);
   // }, []);
 
-  //serach for a country (user input)
-  // const captureSearchInput = (input) => {
-  //   const cleanUpInput = input.split(" ").join("").toLowerCase();
-  //   axios({
-  //     url: `https://restcountries.eu/rest/v2/name/${cleanUpInput}`,
-  //     method: "GET",
-  //     dataResponse: "json",
-  //   })
-  //     .then((response) => {
-  //       const countryResponse = response.data;
-  //       setCountries(countryResponse);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  useEffect(() => {
+    axios({
+      url: `https://restcountries.eu/rest/v2/`,
+      method: "GET",
+      dataResponse: "json",
+    })
+      .then((response) => {
+        const countryResponse = response.data;
+        setCountries(countryResponse);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const captureRegion = (e) => {
     setSearchByName("");
     setRegion(e);
   };
   const captureSearchInput = (e) => {
-    setRegion("");
     setSearchByName(e);
   };
   const captureSelectedCounty = (e) => {
